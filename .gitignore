@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+# per-video work artifacts (not part of the engine)
+f1/
+ov/
+orig24k.wav
+final_audio.wav
+en.ass
+dense_raw.json
+spans.json
+*.mp4
