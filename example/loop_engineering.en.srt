@@ -1,0 +1,976 @@
+1
+00:00:00,000 --> 00:00:02,640
+Recently, the AI world coined yet another new concept: Loop Engineering.
+
+2
+00:00:02,640 --> 00:00:06,700
+Influencers are hailing it as the new era after Prompt, Context, and Harness.
+
+3
+00:00:06,700 --> 00:00:09,680
+Some "expert" accounts, with a totally straight face, explain it as
+
+4
+00:00:09,680 --> 00:00:12,140
+an autonomous, self-running loop system built around large models,
+
+5
+00:00:12,140 --> 00:00:14,700
+upgrading AI from a one-shot response tool into a long-term autonomous agent.
+
+6
+00:00:14,700 --> 00:00:16,160
+Basically, talking like a normal human is just not an option for them.
+
+7
+00:00:16,160 --> 00:00:19,060
+If the earlier "Harness" was an over-packaged buzzword,
+
+8
+00:00:19,060 --> 00:00:21,660
+then this time "Loop" — I honestly think it's straight-up terminology fraud.
+
+9
+00:00:21,660 --> 00:00:26,640
+It's a concept forcibly cooked up by three middle-aged men and a crowd of clueless influencers.
+
+10
+00:00:26,640 --> 00:00:28,700
+It's not only meaningless to ordinary people,
+
+11
+00:00:28,700 --> 00:00:30,360
+it's also useless for understanding where things are actually headed.
+
+12
+00:00:30,360 --> 00:00:32,660
+So let me explain it to you in plain language.
+
+13
+00:00:32,660 --> 00:00:33,700
+Let's start with a quick recap.
+
+14
+00:00:33,700 --> 00:00:37,060
+The first time we chatted with AI, we just asked questions, plain and simple.
+
+15
+00:00:37,060 --> 00:00:39,120
+But we might not get the answer we wanted.
+
+16
+00:00:39,120 --> 00:00:42,520
+Later, people found certain phrasings could improve the quality of the answers.
+
+17
+00:00:42,520 --> 00:00:45,280
+The techniques of crafting and tuning these prompts
+
+18
+00:00:45,280 --> 00:00:48,920
+got branded with a new term: Prompt Engineering.
+
+19
+00:00:48,920 --> 00:00:50,620
+Then later, people discovered
+
+20
+00:00:50,620 --> 00:00:53,040
+that adding some context in front of the prompt
+
+21
+00:00:53,040 --> 00:00:55,280
+could further improve the accuracy of the answers.
+
+22
+00:00:55,280 --> 00:00:57,820
+So they coined another new term: Context Engineering.
+
+23
+00:00:57,820 --> 00:00:59,180
+That is, context engineering.
+
+24
+00:00:59,180 --> 00:01:00,920
+Then later still, people found
+
+25
+00:01:00,920 --> 00:01:02,240
+that as problems got more and more complex,
+
+26
+00:01:02,240 --> 00:01:04,880
+needing long, multi-turn conversations to finish a task,
+
+27
+00:01:04,880 --> 00:01:07,460
+you had to add all kinds of management and constraints around the edges
+
+28
+00:01:07,460 --> 00:01:08,940
+to stop the agent from going rogue.
+
+29
+00:01:08,940 --> 00:01:11,220
+So a while back they coined yet another term:
+
+30
+00:01:11,220 --> 00:01:13,320
+Harness Engineering.
+
+31
+00:01:13,320 --> 00:01:15,000
+As I said in an earlier video,
+
+32
+00:01:15,000 --> 00:01:17,560
+the term "Harness Engineering" is genuinely confusing,
+
+33
+00:01:17,560 --> 00:01:20,620
+because from start to finish we've always been in the process of harnessing large models.
+
+34
+00:01:20,620 --> 00:01:23,100
+There's no need to make a big show of slapping a new name on it,
+
+35
+00:01:23,100 --> 00:01:25,020
+as if it were some brand-new paradigm.
+
+36
+00:01:25,020 --> 00:01:27,340
+At first, people harnessed the large model directly —
+
+37
+00:01:27,340 --> 00:01:28,520
+that's Prompt Engineering.
+
+38
+00:01:28,520 --> 00:01:31,360
+Later, the job of harnessing the model was handed to the Agent —
+
+39
+00:01:31,360 --> 00:01:32,640
+that's Context Engineering.
+
+40
+00:01:32,640 --> 00:01:35,160
+Then people started studying how to harness the Agent —
+
+41
+00:01:35,160 --> 00:01:37,360
+including setting yourself a set of usage rules,
+
+42
+00:01:37,360 --> 00:01:40,400
+or using a dedicated framework like OpenSpec to manage it.
+
+43
+00:01:40,400 --> 00:01:41,620
+That's Harness Engineering.
+
+44
+00:01:41,620 --> 00:01:43,900
+See? From start to finish, isn't it all just harnessing?
+
+45
+00:01:43,900 --> 00:01:46,080
+When a word's scope gets too broad,
+
+46
+00:01:46,080 --> 00:01:47,680
+it just becomes filler and noise.
+
+47
+00:01:47,680 --> 00:01:49,720
+And Loop Engineering is even more baffling.
+
+48
+00:01:49,720 --> 00:01:52,520
+Simply put, it's just calling the Agent in a loop — that's all.
+
+49
+00:01:52,520 --> 00:01:53,940
+You'd think it's very high-level,
+
+50
+00:01:53,940 --> 00:01:56,020
+but it doesn't actually summarize anything.
+
+51
+00:01:56,020 --> 00:01:57,260
+You'd think it's very concrete,
+
+52
+00:01:57,260 --> 00:01:58,520
+but then it gets crowned with some
+
+53
+00:01:58,520 --> 00:02:00,580
+"next-generation programming paradigm" grand concept.
+
+54
+00:02:00,580 --> 00:02:01,800
+It's even more useless than Harness.
+
+55
+00:02:01,800 --> 00:02:03,300
+At this point someone's going to ask:
+
+56
+00:02:03,300 --> 00:02:05,800
+why on earth did this term get so popular?
+
+57
+00:02:05,800 --> 00:02:08,580
+Well, that brings us to the three men who started it all.
+
+58
+00:02:08,580 --> 00:02:09,760
+The first one is Boris.
+
+59
+00:02:09,760 --> 00:02:11,540
+He's the creator of Claude Code.
+
+60
+00:02:11,540 --> 00:02:13,200
+In several interviews,
+
+61
+00:02:13,200 --> 00:02:15,240
+he said he'd deleted his IDE,
+
+62
+00:02:15,240 --> 00:02:16,340
+doesn't write a single line of code anymore,
+
+63
+00:02:16,340 --> 00:02:18,880
+and has gradually cut down on talking to the Agent directly,
+
+64
+00:02:18,880 --> 00:02:20,180
+using Loops more instead.
+
+65
+00:02:28,120 --> 00:02:29,800
+And in a later interview,
+
+66
+00:02:29,800 --> 00:02:31,220
+he went even more radical.
+
+67
+00:02:31,220 --> 00:02:33,220
+Before, his wording was "more and more";
+
+68
+00:02:33,220 --> 00:02:34,820
+this time, it was straight-up "everything."
+
+69
+00:02:47,300 --> 00:02:48,120
+Simple, right?
+
+70
+00:02:48,120 --> 00:02:51,940
+The founder is just personally promoting his own product's new feature —
+
+71
+00:02:51,940 --> 00:02:52,260
+Loop.
+
+72
+00:02:52,260 --> 00:02:55,360
+And the logic behind this command is very, very, very simple.
+
+73
+00:02:55,360 --> 00:02:58,120
+Let me just have the founder explain it to you, and you'll get it.
+
+74
+00:03:22,100 --> 00:03:23,720
+Got it?
+
+75
+00:03:23,720 --> 00:03:25,760
+It's really just Claude Code's scheduled task, that's all.
+
+76
+00:03:25,760 --> 00:03:27,140
+First you type "-loop",
+
+77
+00:03:27,140 --> 00:03:28,760
+then you enter a time interval,
+
+78
+00:03:28,760 --> 00:03:29,680
+say, one minute,
+
+79
+00:03:29,680 --> 00:03:31,620
+then you enter the specific instruction,
+
+80
+00:03:31,620 --> 00:03:32,500
+for example, keep it simple:
+
+81
+00:03:32,500 --> 00:03:34,160
+just have it tell me the current time.
+
+82
+00:03:34,160 --> 00:03:38,420
+Then Claude Code sends this prompt to itself every minute,
+
+83
+00:03:38,420 --> 00:03:39,740
+and automatically presses Enter.
+
+84
+00:03:39,740 --> 00:03:40,400
+That's all there is to it.
+
+85
+00:03:40,940 --> 00:03:43,560
+Our domestic Agent tools from all the big companies
+
+86
+00:03:43,560 --> 00:03:45,520
+have supported scheduled tasks as standard for ages.
+
+87
+00:03:45,520 --> 00:03:47,120
+But hey, what can you do — Claude Code
+
+88
+00:03:47,120 --> 00:03:48,780
+holds the power to define the technology.
+
+89
+00:03:48,780 --> 00:03:50,060
+The second person is Peter,
+
+90
+00:03:50,060 --> 00:03:51,680
+the creator of OpenCode.
+
+91
+00:03:51,680 --> 00:03:52,380
+He takes one look and goes,
+
+92
+00:03:52,380 --> 00:03:52,980
+"Oh man,
+
+93
+00:03:52,980 --> 00:03:55,000
+the Claude Code guy dropped something new again.
+
+94
+00:03:55,000 --> 00:03:57,100
+Better fire off a tweet and ride the hype."
+
+95
+00:03:57,100 --> 00:03:57,900
+And so,
+
+96
+00:03:57,900 --> 00:03:59,280
+this time he put it even more radically.
+
+97
+00:03:59,280 --> 00:04:00,280
+He flat-out told everyone:
+
+98
+00:04:00,280 --> 00:04:02,980
+you shouldn't be commanding your agents anymore;
+
+99
+00:04:02,980 --> 00:04:05,760
+you should design Loops to command your agents.
+
+100
+00:04:05,760 --> 00:04:06,520
+Wow.
+
+101
+00:04:06,520 --> 00:04:07,220
+One after another,
+
+102
+00:04:07,220 --> 00:04:07,900
+each one more over-the-top,
+
+103
+00:04:07,900 --> 00:04:08,900
+it's really got that flavor, alright.
+
+104
+00:04:08,900 --> 00:04:11,260
+Everyone wants to be the one who names the new trend.
+
+105
+00:04:11,260 --> 00:04:12,900
+But man, isn't this a bit too clickbaity?
+
+106
+00:04:12,900 --> 00:04:14,600
+Of course, the even more outrageous one is the third guy:
+
+107
+00:04:14,600 --> 00:04:15,440
+Google's Addy.
+
+108
+00:04:15,440 --> 00:04:17,660
+His other identity is a well-known blogger.
+
+109
+00:04:17,660 --> 00:04:19,960
+Previously, in web frontend and software engineering,
+
+110
+00:04:19,960 --> 00:04:21,660
+he put out a ton of free works.
+
+111
+00:04:21,660 --> 00:04:22,660
+And in the last couple of years,
+
+112
+00:04:22,660 --> 00:04:24,480
+he's pivoted to creating AI content.
+
+113
+00:04:24,480 --> 00:04:25,860
+And after Boris and Peter
+
+114
+00:04:25,860 --> 00:04:28,480
+built up the momentum around the word "Loop,"
+
+115
+00:04:28,480 --> 00:04:29,420
+he went and specifically wrote a
+
+116
+00:04:29,420 --> 00:04:30,640
+"Loop Engineering" article,
+
+117
+00:04:30,640 --> 00:04:32,420
+trying to seize the definition of this new concept.
+
+118
+00:04:32,420 --> 00:04:33,260
+Wow,
+
+119
+00:04:33,260 --> 00:04:34,100
+not even pretending anymore.
+
+120
+00:04:34,100 --> 00:04:36,480
+This is him still smarting from not grabbing Harness back in the day.
+
+121
+00:04:36,480 --> 00:04:37,200
+Anyway,
+
+122
+00:04:37,200 --> 00:04:38,940
+let's give this article a quick read.
+
+123
+00:04:38,940 --> 00:04:39,700
+The opening
+
+124
+00:04:39,700 --> 00:04:42,080
+kicks off with an anxiety-inducing description of the trend.
+
+125
+00:04:42,080 --> 00:04:44,440
+Now you know where a lot of those anxiety-words come from, right?
+
+126
+00:04:44,440 --> 00:04:46,220
+These big shots are the real instigators.
+
+127
+00:04:46,220 --> 00:04:47,380
+The domestic bloggers,
+
+128
+00:04:47,380 --> 00:04:49,520
+at most, are just brainless middlemen
+
+129
+00:04:49,520 --> 00:04:50,480
+who sped the process up.
+
+130
+00:04:50,480 --> 00:04:53,560
+Next, it mentions the hype-y statements from the two big shots earlier.
+
+131
+00:04:53,560 --> 00:04:54,620
+"And my goal
+
+132
+00:04:54,620 --> 00:04:56,420
+is to formally take what the two of them left unsaid
+
+133
+00:04:56,420 --> 00:04:57,460
+and define it for you."
+
+134
+00:04:57,460 --> 00:04:57,980
+Heh heh.
+
+135
+00:04:57,980 --> 00:04:59,080
+You guys make the hype,
+
+136
+00:04:59,080 --> 00:05:00,000
+the credit goes to me.
+
+137
+00:05:00,340 --> 00:05:01,900
+Next he starts reviewing the history,
+
+138
+00:05:01,900 --> 00:05:02,460
+and along the way,
+
+139
+00:05:02,460 --> 00:05:04,640
+plugs the piece he wrote when he missed the peak hype:
+
+140
+00:05:04,640 --> 00:05:05,720
+Harness Engineering.
+
+141
+00:05:06,140 --> 00:05:06,620
+And then
+
+142
+00:05:06,620 --> 00:05:08,980
+he places Loop Engineering above that term,
+
+143
+00:05:08,980 --> 00:05:10,500
+calling it the next-generation trend,
+
+144
+00:05:10,500 --> 00:05:12,760
+or an application built on top of that infrastructure.
+
+145
+00:05:12,760 --> 00:05:14,320
+Further down is the core part:
+
+146
+00:05:14,320 --> 00:05:16,980
+he defines the five components a Loop needs.
+
+147
+00:05:16,980 --> 00:05:18,520
+The first: Automations,
+
+148
+00:05:18,520 --> 00:05:19,380
+automation mechanisms.
+
+149
+00:05:19,380 --> 00:05:21,540
+Basically, either assign a scheduled task,
+
+150
+00:05:21,540 --> 00:05:23,420
+or add a hook to trigger it automatically.
+
+151
+00:05:23,420 --> 00:05:24,660
+The second: Worktrees,
+
+152
+00:05:24,660 --> 00:05:26,160
+which are really just Git branches.
+
+153
+00:05:26,160 --> 00:05:27,300
+The third: Skills.
+
+154
+00:05:27,300 --> 00:05:28,740
+The fourth: Plugins, or MCP.
+
+155
+00:05:28,740 --> 00:05:29,880
+The fifth: Sub-agents.
+
+156
+00:05:29,880 --> 00:05:30,600
+Honestly,
+
+157
+00:05:30,600 --> 00:05:32,800
+I think this article might be a bit rushed.
+
+158
+00:05:32,800 --> 00:05:35,520
+These five terms neither form a complete set of elements,
+
+159
+00:05:35,520 --> 00:05:36,520
+nor are they
+
+160
+00:05:36,520 --> 00:05:37,300
+orthogonal enough to each other,
+
+161
+00:05:37,300 --> 00:05:39,540
+and the scopes they describe aren't even on the same dimension.
+
+162
+00:05:39,540 --> 00:05:41,520
+Next comes —
+
+163
+00:05:41,520 --> 00:05:43,220
+for these concepts everyone already knows well —
+
+164
+00:05:43,220 --> 00:05:44,280
+a simple description,
+
+165
+00:05:44,280 --> 00:05:45,280
+like a laundry list.
+
+166
+00:05:45,280 --> 00:05:46,060
+And finally,
+
+167
+00:05:46,060 --> 00:05:47,400
+he gives a few common examples,
+
+168
+00:05:47,400 --> 00:05:48,500
+which are also Boris's
+
+169
+00:05:48,500 --> 00:05:50,340
+ancient, well-worn cases,
+
+170
+00:05:50,340 --> 00:05:51,280
+nothing new.
+
+171
+00:05:51,280 --> 00:05:52,400
+And at the very, very, very end,
+
+172
+00:05:52,400 --> 00:05:53,780
+he doesn't forget to add a disclaimer for himself:
+
+173
+00:05:53,780 --> 00:05:55,860
+"Go ahead and set up your loops.
+
+174
+00:05:55,860 --> 00:05:56,460
+But also,
+
+175
+00:05:56,460 --> 00:05:58,320
+don't forget that writing prompts directly
+
+176
+00:05:58,320 --> 00:05:58,940
+is just as effective.
+
+177
+00:05:58,940 --> 00:06:01,020
+The key is finding the right balance."
+
+178
+00:06:01,020 --> 00:06:01,640
+Hold on —
+
+179
+00:06:01,640 --> 00:06:03,340
+aren't tons of things in computer science
+
+180
+00:06:03,340 --> 00:06:04,420
+all about trade-offs?
+
+181
+00:06:04,420 --> 00:06:05,640
+That whole confident
+
+182
+00:06:05,640 --> 00:06:07,100
+"the Prompt era is dead" attitude you had at the start —
+
+183
+00:06:07,100 --> 00:06:07,680
+where did that go?
+
+184
+00:06:07,680 --> 00:06:09,560
+What I just said might've been a bit harsh,
+
+185
+00:06:09,560 --> 00:06:11,000
+so I've got to add a disclaimer for myself too.
+
+186
+00:06:11,000 --> 00:06:12,280
+These three men above
+
+187
+00:06:12,280 --> 00:06:14,040
+are definitely big-shot-level figures.
+
+188
+00:06:14,040 --> 00:06:15,180
+Us little ordinary folks
+
+189
+00:06:15,180 --> 00:06:17,000
+don't really have the standing to judge what they say.
+
+190
+00:06:17,000 --> 00:06:17,740
+But,
+
+191
+00:06:17,740 --> 00:06:18,640
+what big shots say
+
+192
+00:06:18,640 --> 00:06:20,660
+tends to get a lot more attention,
+
+193
+00:06:20,660 --> 00:06:22,520
+and is more easily amplified and reinterpreted,
+
+194
+00:06:22,520 --> 00:06:24,100
+which then hypes up some term —
+
+195
+00:06:24,100 --> 00:06:25,660
+just like when Karpathy
+
+196
+00:06:25,660 --> 00:06:27,000
+offhandedly said "vibe coding."
+
+197
+00:06:27,000 --> 00:06:29,280
+But everyone has their own agenda.
+
+198
+00:06:29,280 --> 00:06:31,380
+Boris, as the creator of Claude Code,
+
+199
+00:06:31,380 --> 00:06:33,640
+obviously wants to promote his product's features.
+
+200
+00:06:33,640 --> 00:06:35,640
+Peter, as the creator of OpenCode,
+
+201
+00:06:35,640 --> 00:06:36,680
+after the hype died down,
+
+202
+00:06:36,680 --> 00:06:38,220
+obviously wants to keep some hype alive,
+
+203
+00:06:38,220 --> 00:06:40,420
+so this statement inevitably leans a little clickbaity.
+
+204
+00:06:40,420 --> 00:06:41,900
+Addy, as a blogger,
+
+205
+00:06:41,900 --> 00:06:44,700
+obviously wants to grab onto the hot tech term too —
+
+206
+00:06:44,700 --> 00:06:46,960
+after all, each time is a once-in-a-blue-moon,
+
+207
+00:06:46,960 --> 00:06:48,200
+golden chance to stay visible.
+
+208
+00:06:48,200 --> 00:06:50,140
+Even someone like Karpathy,
+
+209
+00:06:50,140 --> 00:06:51,520
+a very independent tech evangelist —
+
+210
+00:06:51,520 --> 00:06:53,460
+I think after he joined Anthropic,
+
+211
+00:06:53,460 --> 00:06:55,580
+some of his statements inevitably picked up a marketing flavor too.
+
+212
+00:06:55,580 --> 00:06:56,240
+Of course,
+
+213
+00:06:56,240 --> 00:06:58,080
+once you understand where a term comes from,
+
+214
+00:06:58,080 --> 00:07:00,480
+it's still perfectly fine to do some thinking of our own.
+
+215
+00:07:00,480 --> 00:07:02,740
+For example, people first chatted with the large model;
+
+216
+00:07:02,740 --> 00:07:04,200
+actually, once the agent appeared,
+
+217
+00:07:04,200 --> 00:07:06,020
+the loop idea was already there.
+
+218
+00:07:06,020 --> 00:07:07,840
+That is, the agent replaces the human,
+
+219
+00:07:07,840 --> 00:07:09,260
+looping in its communication with the large model,
+
+220
+00:07:09,260 --> 00:07:11,540
+completing a concrete task through multi-turn dialogue.
+
+221
+00:07:11,540 --> 00:07:13,720
+And now people want to find yet another program
+
+222
+00:07:13,720 --> 00:07:15,320
+to loop in communication with the agent,
+
+223
+00:07:15,320 --> 00:07:17,740
+to solve bigger, more persistent problems.
+
+224
+00:07:17,740 --> 00:07:19,540
+You could say we've always been trying
+
+225
+00:07:19,540 --> 00:07:20,800
+to find ways to automate.
+
+226
+00:07:20,800 --> 00:07:22,600
+It's the same idea in other fields too.
+
+227
+00:07:22,600 --> 00:07:24,460
+For example, in distributed systems,
+
+228
+00:07:24,460 --> 00:07:26,040
+RAFT uses loops to do leader election;
+
+229
+00:07:26,040 --> 00:07:28,400
+in K8s, loop-based monitoring
+
+230
+00:07:28,400 --> 00:07:30,700
+keeps node load and various metrics stable.
+
+231
+00:07:30,700 --> 00:07:32,480
+The "loop" shell itself doesn't matter.
+
+232
+00:07:32,480 --> 00:07:35,060
+What matters is that the mechanism can keep running continuously,
+
+233
+00:07:35,060 --> 00:07:36,720
+and auto-recover when it hits problems,
+
+234
+00:07:36,720 --> 00:07:38,440
+so that, barring some extreme situation,
+
+235
+00:07:38,440 --> 00:07:40,100
+it needs no human involvement at all.
+
+236
+00:07:40,480 --> 00:07:41,500
+Achieving this goal
+
+237
+00:07:41,500 --> 00:07:43,880
+requires careful design of algorithms and boundary conditions,
+
+238
+00:07:43,880 --> 00:07:46,140
+as well as all kinds of harness configuration of the system itself.
+
+239
+00:07:46,140 --> 00:07:47,400
+So for most of us,
+
+240
+00:07:47,400 --> 00:07:50,360
+forget about building a system that can construct loops like this —
+
+241
+00:07:50,360 --> 00:07:52,380
+we probably don't even have a single code repository,
+
+242
+00:07:52,380 --> 00:07:54,880
+or have ever even used a simple prompt
+
+243
+00:07:54,880 --> 00:07:55,860
+to write a little demo.
+
+244
+00:07:55,860 --> 00:07:58,400
+So where's this so-called new era of Loop Engineering supposed to come from?
+

@@ -8,11 +8,11 @@ description: Use when making a foreign-language video (esp. Mandarin/Japanese Yo
 Turn a foreign-language video into an English one — synced **dub** + English **subtitles** + translated **on-screen text** — 100% local/free on Apple Silicon. A capable agent will re-derive the plumbing (yt-dlp, whisper, ffmpeg, scene-detect, mux); this skill exists for the **tool choices and silent footguns that re-derivation gets wrong**, and for the proven reference implementation.
 
 ## Reference implementation (start here)
-`~/loop-engineering-translate/` is a complete, working build (8-min Mandarin → EN dub+subs+overlay). Read its `README.md`; **adapt its scripts** (`build_dub.py`, `make_ass.py`, `dense_ocr.py`, `dedup_spans.py`, `render_overlay.py`, `mux*.sh`) rather than writing from scratch. Swap URL → re-run ASR → re-translate `en.srt` + `translations.json`.
+This repo ships the working pipeline: **`engine/`** is the generic, runnable engine (`build_dub.py`, `make_ass.py`, `dense_ocr.py`, `dedup_spans.py`, `render_overlay.py`, `run.sh`); **`example/`** is a complete worked dataset. Read `engine/SETUP.md` + `example/README.md` and **run the engine** — don't write from scratch. Per video, the only new work is producing `en.srt` + `translations.json` (the translation step). Engine assumes a 1920×1080 source.
 
 ## Pipeline + the decision at each stage
 1. **Download** `yt-dlp` (try `--extractor-args "youtube:player_client=web_safari,ios,tv"` on 403; HLS fmt often works when DASH is DRM'd).
-2. **ASR** openai-whisper `large-v3-turbo --language <zh/ja>` (`~/ngaamjam/venv-asr/bin/whisper`), `--word_timestamps True`, output `all` (keep JSON). Pin the language.
+2. **ASR** openai-whisper `whisper source.mp4 --model large-v3-turbo --language <zh/ja> --word_timestamps True --output_format all` (keep JSON). Pin the language. (torch has no py3.14 wheel → run whisper from a py3.12 venv.)
 3. **Translate transcript YOURSELF** (the agent, in-loop) — free, tone-aware, jargon-consistent. Keep 1:1 segment↔timestamp mapping. Fix proper nouns by knowledge (ASR mishears them).
 4. **Dub** — Kokoro-onnx TTS (see footguns). Per-segment synth, time-fit, **drift catch-up**, mix.
 5. **Subtitles** — burn English in a **letterbox bar**, NOT over the frame (see footguns).
