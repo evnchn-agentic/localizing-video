@@ -3,6 +3,8 @@
 **Make a foreign-language video say what it actually says — in English — with the dub, the subtitles,
 and the on-screen text all translated and in sync. Locally, for free.**
 
+![localizing-video — a Mandarin concept slide, localized to English: dub, subtitle bar, and in-place on-screen-text overlay](demo/hero.png)
+
 ## Why this exists
 
 Ideas move across a language border through a chain of middlemen, and the chain is lossy by
@@ -34,13 +36,11 @@ Three burned-in layers, in sync, from one foreign-language video:
 
 100% local compute on Apple Silicon. No paid APIs.
 
-### Before → after
+### Another example
 
-| | |
-|---|---|
-| ![Loop Engineering — concept slide](demo/loop_compare.jpg) | ![Harness — article timeline](demo/harness_compare.jpg) |
+![Harness — an article timeline whose Mandarin titles are replaced in place with English](demo/harness_compare.jpg)
 
-*Left of each: the original Mandarin frame. Right: dub + subtitle bar + in-place English overlay.*
+*Original Mandarin (left) → dub + subtitle bar + in-place English overlay (right). A different video, same pipeline.*
 
 ## How it's built
 
