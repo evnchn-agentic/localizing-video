@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Dense OCR: OCR every 1fps frame full-res, filter watermark + narrator caption,
 keep Chinese boxes. Save raw per-second boxes to dense_raw.json (re-usable)."""
-import json, re, glob, sys
+import json, re, glob, sys, os
 from ocrmac import ocrmac
 W,H=1920,1080
+WM=os.environ.get("WATERMARK","闪客")   # creator watermark substring to drop; per-video/creator
 def has_cjk(s): return bool(re.search(r'[一-鿿]',s))
 
 frames=sorted(glob.glob("f1/f_*.png"))
@@ -14,7 +15,7 @@ for idx,fr in enumerate(frames):
     boxes=[]
     for txt,conf,(x,y,w,h) in res:
         if conf<0.4 or not has_cjk(txt): continue
-        if "闪客" in txt: continue
+        if WM and WM in txt: continue                  # creator watermark (set WATERMARK env)
         px=x*W; py=(1-y-h)*H; pw=w*W; ph=h*H
         cx=px+pw/2; cy=py+ph/2
         if cy>0.87*H and 0.2*W<cx<0.8*W: continue      # narrator caption band
