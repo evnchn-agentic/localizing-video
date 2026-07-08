@@ -2,14 +2,22 @@
 """Stage-1 visual extraction: merge scene cuts into content intervals, OCR a
 representative full-res frame per interval, filter out watermark + narrator
 caption band, dump Chinese boxes to visual_boxes.json for translation."""
-import subprocess, json, re
+import subprocess, json, re, os
 from ocrmac import ocrmac
 from PIL import Image
 
 FF="/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg"
+FP="/opt/homebrew/opt/ffmpeg-full/bin/ffprobe"
 W,H=1920,1080
-DUR=481.44
+WM=os.environ.get("WATERMARK","闪客")   # creator watermark substring to drop; per-video/creator
+DUR=float(subprocess.check_output(
+    [FP,"-v","error","-show_entries","format=duration","-of","default=nw=1:nk=1","source.mp4"]
+).decode().strip())
 
+if not os.path.exists("scene_times.txt"):   # auto-detect scene cuts if not supplied
+    log=subprocess.run([FF,"-i","source.mp4","-filter:v","select='gt(scene,0.3)',showinfo",
+                        "-f","null","-"], capture_output=True, text=True).stderr
+    open("scene_times.txt","w").write("\n".join(re.findall(r"pts_time:([0-9.]+)", log)))
 cuts=[float(x) for x in open("scene_times.txt").read().split()]
 cuts=[0.0]+cuts+[DUR]
 # merge cuts < 2.0s apart -> interval boundaries
@@ -31,7 +39,7 @@ for si,(t0,t1) in enumerate(scenes):
     boxes=[]
     for txt,conf,(x,y,w,h) in res:
         if conf<0.35 or not has_cjk(txt): continue
-        if "闪客" in txt: continue                      # creator watermark
+        if WM and WM in txt: continue                  # creator watermark (set WATERMARK env)
         px=x*W; py=(1-y-h)*H; pw=w*W; ph=h*H
         cy=py+ph/2; cx=px+pw/2
         # drop narrator caption: bottom ~13% and horizontally central

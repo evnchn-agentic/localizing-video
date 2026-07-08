@@ -54,7 +54,8 @@ def active_at(s):
         out.append((sp,en))
     return out
 
-NF=len(glob.glob("f1/f_*.png")) or 481   # derive duration from extracted frames (not hardcoded)
+NF=len(glob.glob("f1/f_*.png"))          # duration = # of extracted 1fps frames
+assert NF, "no f1/f_*.png frames — extract them first: ffmpeg -i source.mp4 -vf fps=1 f1/f_%04d.png"
 secs=[only] if only is not None else range(NF)
 frames_for_color={}
 for s in secs:

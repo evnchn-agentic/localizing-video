@@ -5,7 +5,7 @@ set -e
 cd "$(dirname "$0")"
 FF=/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg
 BAR=200                      # bottom bar height (px); 1080+200 = 1280 (even)
-OUT="${1:-loop_engineering_EN_dub.mp4}"
+OUT="${1:-video_EN_dub.mp4}"
 
 # en.ass carries explicit PlayResY=1280 so font/margins are real pixels (no libass rescale).
 python3 make_ass.py $BAR

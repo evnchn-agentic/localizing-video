@@ -40,3 +40,7 @@ ln -s /path/to/localizing-video/kokoro-v1.0.onnx .   # etc.
 
 Source must be **1920×1080 landscape** (the overlay/letterbox geometry is fixed to it; `run.sh` checks
 and aborts otherwise). Deriving geometry per-source is the obvious next enhancement.
+
+**Creator watermark:** `dense_ocr.py` / `extract_visual.py` drop OCR boxes containing a watermark
+substring — default `闪客` (the 飞天闪客 example). For another creator set `WATERMARK='...'` (or
+`WATERMARK=''` to disable). It's the one creator-specific default in the engine.
