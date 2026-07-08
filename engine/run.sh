@@ -17,7 +17,7 @@ DIM=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of
 echo "[1/5] original audio (for dub gap-passthrough)"
 "$FF" -v error -y -i source.mp4 -ac 1 -ar 24000 -c:a pcm_s16le orig24k.wav
 
-echo "[2/5] English dub (Kokoro, drift catch-up, gaps kept audible)"
+echo "[2/5] English dub (Kokoro, chunk-anchored to the timeline, gaps kept audible)"
 "$PY" "$HERE/build_dub.py" en.srt final_audio.wav "${VOICE:-am_michael}" "${MAXSPEED:-1.85}" orig24k.wav 0.10
 
 echo "[3/5] frames + on-screen-text OCR -> temporal spans"
