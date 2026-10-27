@@ -38,6 +38,18 @@ ln -s /path/to/localizing-video/kokoro-v1.0.onnx .   # etc.
 # knobs: VOICE=am_michael MAXSPEED=1.85 SCOPE=targeted|full BAR=200
 ```
 
+**Optional step 0, freeze-extend** (the Time-density lever, automated): if the dub still hard-caps
+lines at the speed cap, hold static, quiet frames a little longer *before* running the engine:
+
+```bash
+PLAN=1 ./venv-tts/bin/python /path/to/engine/freeze_extend.py source.mp4 en.srt held   # measure only
+./venv-tts/bin/python /path/to/engine/freeze_extend.py source.mp4 en.srt held          # writes held/{source.mp4,en.srt,holds.json}
+```
+
+Then run `run.sh` inside `held/` (link `translations.json` and the shared assets in). Do it before
+OCR: `f1/` and `spans.json` are on the source timeline and go stale once frames are held.
+`freezedetect` cannot see a pen stroke, cursor or caret under its noise floor, so look at a few holds.
+
 Source must be **1920×1080 landscape** (the overlay/letterbox geometry is fixed to it; `run.sh` checks
 and aborts otherwise). Deriving geometry per-source is the obvious next enhancement.
 
