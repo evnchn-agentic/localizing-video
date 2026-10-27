@@ -106,6 +106,7 @@ def main():
     tot = sum(h["sec"] for h in plan)
     print(f"{len(plan)} holds, {tot:.1f}s added (max {max((h['sec'] for h in plan), default=0):.2f}s); "
           f"{short:.1f}s of overrun had no static+silent spot (build_dub will hard-cap it)")
+    print("holds at (source s):", " ".join(f"{h['t']:.1f}+{h['sec']:.2f}" for h in plan))
     if os.environ.get("PLAN"):
         return
 
