@@ -79,17 +79,9 @@ def chunk_segs(segs):
     return chunks
 
 
-def main():
-    srt, out = sys.argv[1], sys.argv[2]
-    voice = sys.argv[3] if len(sys.argv) > 3 else "am_michael"
-    max_speed = float(sys.argv[4]) if len(sys.argv) > 4 else 1.9
-    orig_wav = sys.argv[5] if len(sys.argv) > 5 else None   # original audio for gap passthrough
-    duck = float(sys.argv[6]) if len(sys.argv) > 6 else 0.10  # original gain UNDER narration
-
-    segs = parse_srt(srt)
-    chunks = chunk_segs(segs)
-    print(f"{len(segs)} segments -> {len(chunks)} chunks, voice={voice}, "
-          f"max_speed={max_speed}, duck={duck}")
+def fit(chunks, voice, max_speed):
+    """Yield (chunk, samples, window, speed): each chunk synthesized at the speed that
+    fits its window (capped at max_speed). Samples are NOT yet hard-capped to the window."""
     kok = Kokoro("kokoro-v1.0.onnx", "voices-v1.0.bin")
 
     import hashlib
@@ -102,21 +94,42 @@ def main():
         s,_ = kok.create(text, voice=voice, speed=speed, lang="en-us")
         s = s.astype(np.float32); np.save(p, s); return s
 
+    cps = 15.5            # chars/sec @ speed 1.0, adapted online
+    for c in chunks:
+        window = max(0.4, c["win_end"] - c["start"])
+        est_base = max(0.3, len(c["text"])/cps)       # est duration @ speed 1.0
+        speed = min(max_speed, max(1.0, est_base/(window-0.05)))
+        samples = synth(c["text"], speed)
+        for _ in range(2):   # the chars/sec estimate undershot: resynth faster, within the cap
+            if len(samples)/SR <= window or speed >= max_speed:
+                break
+            speed = min(max_speed, speed*len(samples)/SR/(window-0.05))
+            samples = synth(c["text"], speed)
+        cps = 0.85*cps + 0.15*(len(c["text"])/(len(samples)/SR*speed))  # EMA update of chars/sec
+        yield c, samples, window, speed
+
+
+def main():
+    srt, out = sys.argv[1], sys.argv[2]
+    voice = sys.argv[3] if len(sys.argv) > 3 else "am_michael"
+    max_speed = float(sys.argv[4]) if len(sys.argv) > 4 else 1.9
+    orig_wav = sys.argv[5] if len(sys.argv) > 5 else None   # original audio for gap passthrough
+    duck = float(sys.argv[6]) if len(sys.argv) > 6 else 0.10  # original gain UNDER narration
+
+    segs = parse_srt(srt)
+    chunks = chunk_segs(segs)
+    print(f"{len(segs)} segments -> {len(chunks)} chunks, voice={voice}, "
+          f"max_speed={max_speed}, duck={duck}")
+
     total = max(c["win_end"] for c in chunks) + 8.0
     master = np.zeros(int(total*SR), dtype=np.float32)
     spoken = np.zeros(len(master), dtype=bool)   # where English dub actually plays
 
     FADE = int(0.03*SR)
-    cps = 15.5            # chars/sec @ speed 1.0, adapted online
     n_clip = 0
-    for i, c in enumerate(chunks):
-        start, win_end, text = c["start"], c["win_end"], c["text"]
-        window = max(0.4, win_end - start)
-        est_base = max(0.3, len(text)/cps)            # est duration @ speed 1.0
-        speed = min(max_speed, max(1.0, est_base/(window-0.05)))
-        samples = synth(text, speed)
+    for i, (c, samples, window, speed) in enumerate(fit(chunks, voice, max_speed)):
+        start, text = c["start"], c["text"]
         dur = len(samples)/SR
-        cps = 0.85*cps + 0.15*(len(text)/(dur*speed))  # EMA update of chars/sec
         # ANCHOR at true start — never a running cursor, so drift can't accumulate.
         cap = int(window*SR)                           # hard cap = this chunk's own slot
         if len(samples) > cap:
